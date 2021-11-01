@@ -18,7 +18,10 @@
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="password">Password</label>
-                    <input id="password" name="password" class="form-input" type="password" required/>
+                    <div class="d-flex">
+                        <input id="password" name="password" class="form-input" type="password" required/>
+                        <span onclick="password_show(this.id, 'password')" id="seepass" class="iconify mt-2 " data-icon="zmdi:eye"></span>
+                    </div>
                 </div>
                 <div class="form-group center">
                     <button type="submit">CONTINUE</button>
@@ -28,5 +31,6 @@
     </div>
 
 <script src="/public/js/login.js"></script>
+<script src="/public/js/scrollevent.js"></script>
 </body>
 </html>

@@ -1,0 +1,36 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input.invalid {
+    background-color: rgba(255, 63, 108, 0.1);
+}
+
+.tab {
+    display: none;
+}
+
+.step {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #696969;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+}
+
+.step.active {
+    opacity: 1;
+}
+
+.step.finish {
+    background-color: #ff3f6c;
+}
+
+.form-label {
+    background-color: transparent;
+}

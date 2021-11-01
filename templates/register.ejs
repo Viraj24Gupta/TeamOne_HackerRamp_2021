@@ -2,8 +2,87 @@
 <html lang="en">
 <head>
     <%- include ('head.ejs') %>
+    <link rel="stylesheet" href="/public/css/login.css">
+    <link rel="stylesheet" href="/public/css/register.css">
 </head>
 <body>
+    <%- include ('header.ejs') %>
+    <div class="container center header-padding">
+        <div class="form-wrapper">
+            <form id="regForm" action="" method="post" class="form">
+                <div class="form-group mb-5">
+                    <h3>REGISTER</h3>
+                </div>
+                <div class="tab">
+                    <div id="name_view" class="form-group">
+                        <label class="form-label" for="name">Full Name</label>
+                        <input id="name" name="name" oninput="this.className='form-input'" class="form-input" type="text" required/>
+                    </div>
+                    <div id="email_view" class="form-group">
+                        <label class="form-label" for="email">E-Mail</label>
+                        <input id="email" name="email" oninput="this.className='form-input'" class="form-input" type="email" required/>
+                    </div>
+                    <div id="number_view" class="form-group">
+                        <label class="form-label" for="number">Mobile Number(only 10 digits)</label>
+                        <input id="number" name="number" oninput="this.className='form-input'" class="form-input" type="number" required/>
+                    </div>
+                </div>
+                <div class="tab">
+                    <div id="location_view" class="form-group">
+                        <label class="form-label" for="location">Location</label>
+                        <input id="location" name="location" oninput="this.className='form-input'" class="form-input" type="text" required/>
+                    </div>
+                    <div id="address_view" class="form-group">
+                        <label class="form-label" for="address">Address</label>
+                        <input id="address" name="address" oninput="this.className='form-input'" class="form-input" type="text" required/>
+                    </div>
+                </div>
+                <div class="tab">
+                    <div id="aadhar_view" class="form-group">
+                        <h5>Aadhar Card</h5>
+                        <input id="aadhar" name="aadhar" oninput="this.className='form-input'" class="form-input" type="file" required/>
+                    </div>
+                    <div id="Profile_pic_view" class="form-group">
+                        <h5>Profile Picture</h5>
+                        <input id="profile_pic" name="profile_pic" oninput="this.className='form-input'" class="form-input" type="file" required/>
+                    </div>
+                </div>
+                <div class="tab">
+                    <div id="password_view" class="form-group">
+                        <label class="form-label" for="password">Password(min 7 characters)</label>
+                        <div class="d-flex">
+                            <input id="password" name="password" oninput="this.className='form-input'" class="form-input" type="password" required/>
+                            <span onclick="password_show(this.id, 'password')" id="seepass" class="iconify mt-2 " data-icon="zmdi:eye"></span>
+                        </div>
+                    </div>
+                    <div id="confirm_password_view" class="form-group">
+                        <label class="form-label" for="confirm_password">Confirm Password</label>
+                        <div class="d-flex">
+                            <input id="confirm_password" name="confirm_password" oninput="this.className='form-input'" class="form-input" type="password" required/>
+                            <span onclick="password_show(this.id, 'confirm_password')" id="seeconpass" class="iconify mt-2 " data-icon="zmdi:eye"></span>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="mt-5 center">
+                    <span class="step"></span>
+                    <span class="step"></span>
+                    <span class="step"></span>
+                    <span class="step"></span>
+                </div>
+                <div>
+                    <div class="mt-5 center">
+                        <button class="m-2" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                        <button class="m-2" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+<script src="/public/js/login.js"></script>
+<script src="/public/js/scrollevent.js"></script>
+<script src="/public/js/register.js"></script>
 </body>
 </html>

@@ -17,6 +17,7 @@ Aunty (unique id, qr code)-->
 3. phone
 4. lat long
 5. aadhar
-6. address proof of the shop
-7. otp by postage
+6. address proof of the shop(otp by postage)
+
+future
 8. link your myntra studio acc
