@@ -3,16 +3,11 @@
 html {
     font-family: 'Rubik', sans-serif;
 }
-header {
+
+header, .header {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-.header {
-    top: 0;
     width: 100%;
     background: #0e0e0e;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
