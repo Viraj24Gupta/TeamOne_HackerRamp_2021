@@ -21,3 +21,16 @@ Aunty (unique id, qr code)-->
 
 future
 8. link your myntra studio acc
+
+## run
+1. docker-compose up
+2. docker exec -it teamone_hackerramp_2021-postgres-1 psql -U postgres -h localhost -w
+3. create database scores;
+
+## sore table cols
+1. last mile count 
+2. return rate converion vs come
+3. user referral count
+4. feedback
+5. user score
+
