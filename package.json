@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Viraj24Gupta/TeamOne_HackerRamp_2021#readme",
   "dependencies": {
+    "argon2": "^0.28.2",
     "body-parser": "^1.19.0",
     "connect-redis": "^6.0.0",
     "cors": "^2.8.5",
