@@ -30,7 +30,7 @@ function nextPrev(n) {
 }
 
 function validateForm() {
-    let emailRegex = /^[a-zA-Z0-9_]*[@][a-zA-Z]+[.][a-z]+$/;
+    let emailRegex = /^[a-zA-Z0-9_]*[@][a-zA-Z]+[.][a-zA-Z]+$/;
     let numberRegex = /^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/;
     let passwordRegex = /^[A-Za-z0-9]{7,}$/
 
@@ -45,34 +45,42 @@ function validateForm() {
         else if (y[i].id === "email" ) {
             if (!emailRegex.test(y[i].value)) {
                 y[i].setCustomValidity("Email is not valid");
+                y[i].className += " invalid"
                 valid = false;
             } else {
                 y[i].setCustomValidity("");
+                y[i].className += " valid"
             }
         }
         else if (y[i].id === "number" ) {
             if (!numberRegex.test(y[i].value)) {
                 y[i].setCustomValidity("phone number is not valid");
+                y[i].className += " invalid"
                 valid = false;
             } else {
                 y[i].setCustomValidity("");
+                y[i].className += " valid"
             }
         }
         else if (y[i].id === "password" ) {
             if (!passwordRegex.test(y[i].value)) {
                 y[i].setCustomValidity("password should be of minimum 7 characters");
+                y[i].className += " invalid"
                 valid = false;
             } else {
                 y[i].setCustomValidity("");
+                y[i].className += " valid"
             }
         }
         else if (y[i].id === "confirm_password" ) {
             let password = document.getElementById("password")
             if (String(password.value) !== String(y[i].value)) {
                 y[i].setCustomValidity("passwords do not match. Please check");
+                y[i].className += " invalid"
                 valid = false;
             } else {
                 y[i].setCustomValidity("");
+                y[i].className += " valid"
             }
         }
     }
