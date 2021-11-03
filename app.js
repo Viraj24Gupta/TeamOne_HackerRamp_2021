@@ -8,6 +8,8 @@ let redisClient = redis.createClient();
 require("dotenv").config();
 let cors = require("cors");
 let { urlencoded, json } = require("body-parser");
+let passport = require("passport");
+let passportLocal = require("./config/passport-local");
 
 app.use(cors());
 app.use(urlencoded({ extended: false }));
@@ -35,6 +37,9 @@ app.use(
     })
 );
 
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(passport.setAuthenticatedUser);
 app.use("/", require("./routes/index"));
 
 app.listen(process.env.PORT, () => {
