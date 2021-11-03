@@ -30,6 +30,10 @@ app.use(
     })
 );
 
+app.use(require("./routes/login"));
+app.use(require("./routes/test_db"));
+
+
 app.set("views", path.join(__dirname, "templates"));
 app.set("view engine", "ejs");
 
@@ -37,12 +41,13 @@ app.get("/", function (req, res) {
     if (!req.session.currentUser) {
         res.render("home.ejs", { title: "Myntra Ambassador" });
     } else {
-        res.render("dashboard.ejs");
+        res.render("dashboard.ejs", {title: "Myntra Ambassador"});
     }
 });
 
-let login = require("./routes/login");
-app.use("/", login);
+app.get("/dash", function (req, res) {
+    res.render("dashboard.ejs", {title: "dashboard"})
+})
 
 app.listen(process.env.PORT, () => {
     console.log("http://localhost:" + process.env.PORT);

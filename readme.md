@@ -34,3 +34,11 @@ future
 4. feedback
 5. user score
 
+## user match ambassador
+1. distance b/w user coord and aunty coords
+2. traverse location table
+
+
+## score se level
+
+## return ke time conc
