@@ -1,10 +1,6 @@
 const express = require("express");
 const router = express.Router();
 
-router.get("/dash", function (_, res) {
-    res.render("dashboard", { title: "dashboard" });
-});
-
 router.get("/profile", (req, res)=> {
     res.render('profile', {title: "Profile"})
 })
