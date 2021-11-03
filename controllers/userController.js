@@ -14,20 +14,27 @@ module.exports.createUser = async (req, res) => {
         pic: req.body.profile_pic,
         password: req.body.password,
     };
-    if (data.password == req.body.confirm_password) {
-        try {
-            password_hash = await argon2.hash(data.password);
-            data.password = password_hash;
-        } catch (err) {
-            console.log("Error hashing password");
+    const userRef = db.collection("users").doc(data.email);
+    const user = await userRef.get();
+    if (!user.exists) {
+        if (data.password == req.body.confirm_password) {
+            try {
+                password_hash = await argon2.hash(data.password);
+                data.password = password_hash;
+            } catch (err) {
+                console.log("Error hashing password");
+            }
+            const inserted_data = await db
+                .collection("users")
+                .doc(data.email)
+                .set(data);
+            res.redirect("/login");
+        } else {
+            console.log("Password does not match");
         }
-        const inserted_data = await db
-            .collection("users")
-            .doc(data.email)
-            .set(data);
-        res.redirect("/login");
     } else {
-        console.log("Password does not match");
+        console.log("user already exists");
+        res.redirect("login");
     }
 };
 
