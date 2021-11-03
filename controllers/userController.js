@@ -1,11 +1,10 @@
 const express = require("express");
 const argon2 = require("argon2");
 const db = require("../config/firebase");
-const { v4: uuidv4 } = require("uuid");
 
 module.exports.createUser = async (req, res) => {
     let data = {
-        id: uuidv4(),
+        id: Math.random().toString(36).slice(-6),
         name: req.body.name,
         email: req.body.email,
         number: req.body.number,
