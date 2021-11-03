@@ -1,13 +1,13 @@
 const express = require("express");
-const login = express.Router();
+const router = express.Router();
 const argon2 = require("argon2");
 const db = require("../config/firebase");
 
-login.get("/register", function (req, res) {
-    res.render("register.ejs", { title: "Registration" });
+router.get("/register", function (req, res) {
+    res.render("register", { title: "Registration" });
 });
 
-login.post("/register", async (req, res) => {
+router.post("/register", async (req, res) => {
     const name = req.body.name;
     const email = req.body.email;
     const m_number = req.body.number;
@@ -31,35 +31,16 @@ login.post("/register", async (req, res) => {
             Profile_Picture: p_pic,
             Password: password_hash,
         });
+        res.redirect("/login");
     }
 });
 
-login.get("/login", function (req, res) {
-    res.render("login.ejs", { title: "Login" });
+router.get("/login", function (req, res) {
+    res.render("login", { title: "Login" });
 });
 
-login.post("/login", async (req, res) => {
-    const user = req.body.username;
-    const pass = req.body.password;
-    var x = 0;
-    const snapshot = await db
-        .collection("users")
-        .where("Email", "==", user)
-        .get();
-    snapshot.forEach((doc) => {
-        // console.log(doc.data().username);
-        if (doc.data().password == pass && doc.data().username == user) {
-            req.session.currentUser = user;
-            res.redirect("/");
-            x = 1;
-        }
-    });
-    if (x === 0) {
-        res.render("err", {
-            msg: "WRONG USERNAME OR PASSWORD",
-            path: "/signin",
-        });
-    }
+router.post("/login", async (req, res) => {
+
 });
 
-module.exports = login;
+module.exports = router;

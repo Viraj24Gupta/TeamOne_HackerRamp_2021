@@ -3,9 +3,9 @@ const router = express.Router();
 
 router.get("/", function (req, res) {
     if (!req.session.currentUser) {
-        res.render("home.ejs", { title: "Myntra Ambassador" });
+        res.render("home", { title: "Myntra Ambassador" });
     } else {
-        res.render("dashboard.ejs", { title: "Myntra Ambassador" });
+        res.render("dashboard", { title: "Myntra Ambassador" });
     }
 });
 

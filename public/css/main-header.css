@@ -20,7 +20,7 @@
     height: auto;
     min-height: 75px;
     overflow: hidden;
-    background: darkgrey;
+    background: darkgrey;/*#F0D9D3*/
 }
 
 .navbar ul {
