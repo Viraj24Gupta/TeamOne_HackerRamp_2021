@@ -11,8 +11,6 @@ module.exports.createUser = async (req, res) => {
         number: req.body.number,
         location: req.body.location,
         address: req.body.address,
-        aadhar: req.body.aadhar,
-        pic: req.body.profile_pic,
         password: req.body.password,
     };
     await pgController.NewUser(data);
