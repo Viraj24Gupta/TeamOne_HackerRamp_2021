@@ -21,7 +21,10 @@ router.get("/referrals", (req, res)=> {
     if (!req.isAuthenticated()) {
         res.render("home", { title: "Myntra Ambassador" });
     } else {
-        res.render('referral', {title: "Referrals"})
+        res.render('referral', {
+            title: "Referrals",
+            qrcodeID: `${req.user.id}`
+        })
 
     }
 })

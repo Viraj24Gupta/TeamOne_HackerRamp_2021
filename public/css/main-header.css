@@ -11,6 +11,10 @@
     width: 100%;
 }
 
+.width-client {
+    width: 50%;
+}
+
 /* NAVIGATION */
 
 .navbar1 {
@@ -102,6 +106,10 @@
 
     .width {
         width: 200%;
+    }
+
+    .width-client {
+        width: 100%;
     }
 
     .move {

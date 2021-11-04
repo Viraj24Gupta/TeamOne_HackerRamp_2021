@@ -1,12 +1,65 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <%- include ('head.ejs') %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> <%= title %> </title>
+    <link rel="icon" type="image/svg+xml" href="/public/img/icon.svg">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+    <link rel="stylesheet" href="../public/css/static.css">
+    <link rel=" stylesheet" href="../public/css/main-header.css">
+<!--    <%- include ('head.ejs') %>-->
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <style>
+        #qrcode {
+            width:100%;
+            height:250px;
+            margin-top:30px;
+            display: flex;
+        }
+    </style>
 </head>
 <body>
-    <%- include ('main_header.ejs') %>
+<div class="nav-wrapper1">
+    <nav class="navbar1">
+        <div class="icons center">
+            <a class="mr-1" href="/">
+                <img class="width" src="/public/img/MyntraLogo_black.svg" alt="myntra_logo">
+            </a>
+            <a href="/">
+                <img class="width move" src="/public/img/ambassador_color.svg" alt="ambassador_logo">
+            </a>
+        </div>
+        <div class="menu-toggle1" id="mobile-menu">
+            <span class="bar1"></span>
+            <span class="bar1"></span>
+            <span class="bar1"></span>
+        </div>
+        <ul class="nav transition move">
+            <li class="nav-item1"><a href="/profile"><span id="user_icon" class="iconify" data-icon="mdi-light:account"></span></a></li>
+            <li class="nav-item1"><a href="/">Home</a></li>
+            <li class="nav-item1"><a href="/referrals">Referrals</a></li>
+            <li class="nav-item1"><a href="/earnings">Earning</a></li>
+            <li class="nav-item1"><a href="/about">How It Works</a></li>
+            <li class="nav-item1"><a href="/contact">Contact Us</a></li>
+            <li class="nav-item1"><a href="/logout">Logout<span style="transform: translate(0,-10%)" class="iconify" data-icon="mdi:logout"></span></a></li>
+        </ul>
+    </nav>
+</div>
+<!--    <%- include ('main_header.ejs') %>-->
+    <div class="qrcode-container">
+        <h4>Referral QR code: </h4>
+        <input id="text" type="text" value=<%= qrcodeID %> style="display: none" />
+        <div id="qrcode"></div>
+    </div>
 
 
+<script src="/public/js/qrcode.js"></script>
 <script src="/public/js/main-header.js"></script>
 </body>
 </html>
