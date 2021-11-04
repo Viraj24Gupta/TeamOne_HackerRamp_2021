@@ -12,7 +12,7 @@ router.get("/profile", (req, res)=> {
             email: req.user.email,
             m_number: req.user.number,
             address: req.user.address,
-            qrcodeID: `http:localhost:8000/client/referral/${req.user.id}`
+            qrcodeID: `${process.env.domainURL}/client/referral/${req.user.id}`
         })
     }
 })
@@ -23,7 +23,7 @@ router.get("/referrals", (req, res)=> {
     } else {
         res.render('referral', {
             title: "Referrals",
-            qrcodeID: `${req.user.id}`
+            qrcodeID: `${process.env.domainURL}/client/referral/${req.user.id}`
         })
 
     }

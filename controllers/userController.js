@@ -1,6 +1,7 @@
 const express = require("express");
 const argon2 = require("argon2");
 const db = require("../config/firebase");
+const pgController = require("../controllers/pgController");
 
 module.exports.createUser = async (req, res) => {
     let data = {
@@ -14,6 +15,7 @@ module.exports.createUser = async (req, res) => {
         pic: req.body.profile_pic,
         password: req.body.password,
     };
+    await pgController.NewUser(data);
     const userRef = db.collection("users").doc(data.email);
     const user = await userRef.get();
     if (!user.exists) {
