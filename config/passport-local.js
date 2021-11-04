@@ -45,7 +45,7 @@ passport.deserializeUser(async (usr, done) => {
         console.log("error finding user->deserializer");
         return done(null, false);
     }
-    return done(null, user);
+    return done(null, user.data());
 });
 
 passport.setAuthenticatedUser = function (req, res, next) {

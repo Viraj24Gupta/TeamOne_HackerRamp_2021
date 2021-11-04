@@ -5,7 +5,15 @@ router.get("/profile", (req, res)=> {
     if (!req.isAuthenticated()) {
         res.render("home", { title: "Myntra Ambassador" });
     } else {
-        res.render('profile', {title: "Profile"})
+        res.render('profile', {
+            title: "Profile",
+            userID: req.user.id,
+            name: req.user.name,
+            email: req.user.email,
+            m_number: req.user.number,
+            address: req.user.address,
+            qrcodeID: `${req.user.id}`
+        })
     }
 })
 

@@ -2,11 +2,31 @@
 <html lang="en">
 <head>
     <%- include ('head.ejs') %>
+    <link rel=" stylesheet" href="../public/css/dashboard.css">
 </head>
 <body>
     <%- include ('main_header.ejs') %>
+    <div class="container dashboard">
+        <div class="row center">
+            <div class="level card">
+                <h3 class="heading">YOUR TIER</h3>
+                <div class="progress" style="width: 75%;">
+                    <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
 
+            </div>
+        </div>
+        <div class="row targets center">
+            <div class="target center card d-f-w">
+                <h3 class="heading">LAST MILE TARGETS</h3>
 
+            </div>
+            <div class="target center card d-f-w">
+                <h3 class="heading">RETURN TARGETS</h3>
+
+            </div>
+        </div>
+    </div>
 
 <script src="/public/js/main-header.js"></script>
 </body>
