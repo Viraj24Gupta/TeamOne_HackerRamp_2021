@@ -43,5 +43,6 @@ app.use(passport.setAuthenticatedUser);
 app.use("/", require("./routes/index"));
 
 app.listen(process.env.PORT, () => {
-    console.log("http://localhost:" + process.env.PORT);
+    console.log(`ambassador login: http://localhost:${process.env.PORT}`);
+    console.log(`client login: http://localhost:${process.env.PORT}/client`);
 });
