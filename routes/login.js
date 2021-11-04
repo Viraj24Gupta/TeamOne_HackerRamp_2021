@@ -18,6 +18,8 @@ router.post(
     userController.createSession
 );
 
+router.post("/change_password", userController.ChangePassword);
+
 router.get("/logout", userController.logout);
 
 module.exports = router;

@@ -48,3 +48,17 @@ module.exports.logout = (req, res) => {
     res.clearCookie("user_id");
     res.redirect("/");
 };
+
+module.exports.ChangePassword = async (req, res)=>{
+    const new_password = req.body.password;
+    let password_hash;
+    try {
+        password_hash = await argon2.hash(new_password);
+    } catch (err) {
+        console.log("Error hashing new password");
+    }
+    await db.collection('users').doc(req.user.email).update({
+        password : password_hash
+    });
+    res.redirect("/");
+};
