@@ -9,7 +9,7 @@ module.exports.NewUser = async(data)=>{
         );
         const location = await pool.query(
             "INSERT INTO location VALUES ($1,$2,$3)",
-            [data.id,0,0]
+            [data.id,0,0]//todo location lat long
         );
         const score = await pool.query(
             "INSERT INTO score VALUES ($1,$2,$3,$4,$5,$6)",
@@ -34,4 +34,28 @@ module.exports.NewReferral = async(req, res)=>{
     } catch (err) {
         console.log(err.message);
     }
+};
+
+module.exports.MyReferrals = async(req,res)=>{
+    let my_id = req.user.id;
+    let get_all;
+    try {
+        get_all = await pool.query(
+            "SELECT * FROM client WHERE referee_id = ($1)",
+            [my_id]
+        );
+    } catch (err) {
+        console.log(err.message);
+    }
+
+    if (!req.isAuthenticated()) {
+        res.render("home", { title: "Myntra Ambassador" });
+    } else {
+        res.render('referral', {
+            title: "Referrals",
+            qrcodeID: `${process.env.domainURL}/client/referral/${req.user.id}`,
+            data: get_all.rows
+        })
+    }
+
 };

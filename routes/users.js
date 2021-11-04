@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const pgController = require("../controllers/pgController");
 
 router.get("/profile", (req, res)=> {
     if (!req.isAuthenticated()) {
@@ -17,17 +18,7 @@ router.get("/profile", (req, res)=> {
     }
 })
 
-router.get("/referrals", (req, res)=> {
-    if (!req.isAuthenticated()) {
-        res.render("home", { title: "Myntra Ambassador" });
-    } else {
-        res.render('referral', {
-            title: "Referrals",
-            qrcodeID: `${process.env.domainURL}/client/referral/${req.user.id}`
-        })
-
-    }
-})
+router.get("/referrals", pgController.MyReferrals)
 
 router.get("/earnings", (req, res)=> {
     if (!req.isAuthenticated()) {

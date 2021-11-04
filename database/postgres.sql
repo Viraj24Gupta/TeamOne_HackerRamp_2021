@@ -22,6 +22,12 @@ CREATE TABLE score(
     feedback    float
 );
 
+CREATE TABLE client(
+    client_id   VARCHAR(6) PRIMARY KEY,
+    client_name text,
+    referee_id  VARCHAR(6)
+);
+
 INSERT INTO earnings VALUES ('usr101','121.01','151.01','201.01');
 INSERT INTO earnings VALUES ('usr102','122.02','152.02','202.02');
 INSERT INTO earnings VALUES ('usr103','123.03','153.03','203.03');
@@ -41,6 +47,14 @@ INSERT INTO score VALUES ('usr103','122','111','23','35','4.7');
 INSERT INTO score VALUES ('usr104','121','41','24','55','3.6');
 INSERT INTO score VALUES ('usr105','1','14','11','75','1.2');
 
+
+INSERT INTO client VALUES ('cli101','new user 1','usr101');
+INSERT INTO client VALUES ('cli102','new user 2','usr102');
+INSERT INTO client VALUES ('cli103','new user 3','usr103');
+INSERT INTO client VALUES ('cli104','new user 4','usr104');
+INSERT INTO client VALUES ('cli105','new user 5','usr105');
+INSERT INTO client VALUES ('cli106','new user 6','fgwmrh');
+INSERT INTO client VALUES ('cli107','new user 7','fgwmrh');
 
 
 -- create table test(
