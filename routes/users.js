@@ -12,7 +12,7 @@ router.get("/profile", (req, res)=> {
             email: req.user.email,
             m_number: req.user.number,
             address: req.user.address,
-            qrcodeID: `${req.user.id}`
+            qrcodeID: `http:localhost:8000/client/referral/${req.user.id}`
         })
     }
 })
