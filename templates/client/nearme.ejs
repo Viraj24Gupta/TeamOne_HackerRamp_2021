@@ -2,11 +2,76 @@
 <html lang="en">
 <head>
     <%- include ('head.ejs') %>
+    <style>
+        .center {
+            flex-wrap: wrap;
+        }
+        .jc {
+           justify-content: center;
+        }
+        .al {
+            text-align: left;
+        }
+        .btn {
+             background-color: #ff3f6c;
+             color: white;
+        }
+        .profile-link {
+             color: #ff3f6c;
+        }
+        .card:hover {
+            box-shadow: 0px -4px 25px rgba(0, 0, 0, 0.05), 0px 4px 25px rgba(0, 0, 0, 0.05);
+        }
+    </style>
 </head>
 <body>
     <%- include ('header.ejs') %>
+    <div class="center mt-3">
 
 
+        <div class="card w-75 mb-3">
+            <div class="row rounded jc">
+                <div class="col-md-11 pt-3 pl-3">
+                    <div class="card-body al">
+                        <div class="media">
+                            <div class="media-body">
+                                <a class="btn float-right mr-4 d-none d-md-block" href="{{.ProfileLink}}">Visit Profile</a>
+                                <h5><strong><a class="profile-link" href="{{.ProfileLink}}">{{.Name}}</a></strong></h5>
+                                <p class="list-inline text-muted">
+                                    {{.Profession}}
+                                    {{.Area}}
+                                </p>
+                                {{ range .Tags}}
+                                    {{if .HasLink}}
+                                        <a href="{{.Link}}" title="{{.Text}} designs" target="_blank"><span class="badge badge-pill text-muted amp-tag">{{.Text}}</span></a>
+                                    {{else}}
+                                        <span class="badge badge-pill text-muted">{{.Text}}</span>
+                                    {{end}}
+                                {{ end }}
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col">
+                                <small class="text-muted">Experience</small><br/>
+                                {{.Experience}} Years
+                            </div>
+                            <div class="col">
+                                <small class="text-muted">Company</small><br/>
+                                {{.Company}}
+                            </div>
+                            <div class="col">
+                                <small class="text-muted">Followers</small><br/>
+                                {{.FollowersCount}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
 <script src="/public/js/main-header.js"></script>
 </body>
 </html>

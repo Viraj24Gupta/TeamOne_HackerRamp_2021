@@ -24,11 +24,20 @@ module.exports.NewUser = async(data)=>{
 module.exports.NewReferral = async(req, res)=>{
     let ambassadorID = req.body.ambassador_id;
     let inc_score = 1;
+    let random_id = Math.floor(100000 + Math.random() * 900000);
+    let random_name = "John Doe " + Math.random().toString(36).slice(-2);
+
     try {
-        const inc = await pool.query(
+        const score = await pool.query(
             "UPDATE score SET ref_count = ref_count + ($1) WHERE user_id = ($2) ",
             [inc_score, ambassadorID]
         );
+
+        const client = await pool.query(
+            "INSERT INTO client VALUES ($1,$2,$3)",
+            [random_id, random_name, ambassadorID]
+        );
+
         console.log(`referral count increased for ${ambassadorID}`);
         res.redirect("/client");
     } catch (err) {
