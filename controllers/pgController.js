@@ -9,7 +9,7 @@ module.exports.NewUser = async(data)=>{
         );
         const location = await pool.query(
             "INSERT INTO location VALUES ($1,$2,$3)",
-            [data.id,0,0]//todo location lat long
+            [data.id,data.location.latitude,data.location.longitude]
         );
         const score = await pool.query(
             "INSERT INTO score VALUES ($1,$2,$3,$4,$5,$6,$7)",
