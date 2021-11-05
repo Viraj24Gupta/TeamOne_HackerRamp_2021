@@ -30,7 +30,8 @@
                 <div class="tab">
                     <div id="location_view" class="form-group">
                         <label class="form-label" for="location">Location</label>
-                        <input id="location" name="location" oninput="this.className='form-input'" class="form-input" type="text" required/>
+                        <input id="latitude" name="latitude" class="form-input" type="number" required />
+                        <input id="longitude" name="longitude" class="form-input" type="number" required />
                     </div>
                     <div id="address_view" class="form-group">
                         <label class="form-label" for="address">Address</label>
@@ -73,5 +74,6 @@
 <script src="/public/js/login.js"></script>
 <script src="/public/js/scrollevent.js"></script>
 <script src="/public/js/register.js"></script>
+<script src="/public/js/geolocation.js"></script>
 </body>
 </html>

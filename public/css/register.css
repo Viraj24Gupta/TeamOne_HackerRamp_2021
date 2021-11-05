@@ -12,6 +12,14 @@ input.invalid {
     display: none;
 }
 
+#latitude {
+    display: none;
+}
+
+#longitude {
+    display: none;
+}
+
 .step {
     height: 15px;
     width: 15px;

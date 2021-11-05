@@ -3,33 +3,32 @@ const router = express.Router();
 const pgController = require("../controllers/pgController");
 const userController = require("../controllers/userController");
 
-router.get("/profile", (req, res)=> {
+router.get("/profile", (req, res) => {
     if (!req.isAuthenticated()) {
         res.render("home", { title: "Myntra Ambassador" });
     } else {
-        res.render('profile', {
+        res.render("profile", {
             title: "Profile",
             userID: req.user.id,
             name: req.user.name,
             email: req.user.email,
             m_number: req.user.number,
             address: req.user.address,
-            qrcodeID: `${process.env.domainURL}/client/referral/${req.user.id}`
-        })
+            qrcodeID: `${process.env.domainURL}/client/referral/${req.user.id}`,
+        });
     }
-})
+});
 
-router.post("/change_description",userController.ChangeDescription);
+router.post("/change_description", userController.ChangeDescription);
 
-router.get("/referrals", pgController.MyReferrals)
+router.get("/referrals", pgController.MyReferrals);
 
-router.get("/earnings", (req, res)=> {
+router.get("/earnings", (req, res) => {
     if (!req.isAuthenticated()) {
         res.render("home", { title: "Myntra Ambassador" });
     } else {
-        res.render('earning', {title: "Earnings"})
-
+        res.render("earning", { title: "Earnings" });
     }
-})
+});
 
 module.exports = router;

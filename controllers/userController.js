@@ -1,6 +1,7 @@
 const express = require("express");
 const argon2 = require("argon2");
 const db = require("../config/firebase");
+const firebase = require("firebase-admin");
 const pgController = require("../controllers/pgController");
 
 module.exports.createUser = async (req, res) => {
@@ -9,7 +10,10 @@ module.exports.createUser = async (req, res) => {
         name: req.body.name,
         email: req.body.email,
         number: req.body.number,
-        location: req.body.location,
+        location: new firebase.firestore.GeoPoint(
+            parseFloat(req.body.latitude),
+            parseFloat(req.body.longitude)
+        ),
         address: req.body.address,
         password: req.body.password,
     };
@@ -39,6 +43,8 @@ module.exports.createUser = async (req, res) => {
 };
 
 module.exports.createSession = (req, res) => {
+    console.log(req.user);
+    console.log(req.user.name);
     res.redirect("/");
 };
 
@@ -49,7 +55,7 @@ module.exports.logout = (req, res) => {
     res.redirect("/");
 };
 
-module.exports.ChangePassword = async (req, res)=>{
+module.exports.ChangePassword = async (req, res) => {
     const new_password = req.body.password;
     let password_hash;
     try {
@@ -57,16 +63,16 @@ module.exports.ChangePassword = async (req, res)=>{
     } catch (err) {
         console.log("Error hashing new password");
     }
-    await db.collection('users').doc(req.user.email).update({
-        password : password_hash
+    await db.collection("users").doc(req.user.email).update({
+        password: password_hash,
     });
     res.redirect("/");
 };
 
-module.exports.ChangeDescription = async (req,res)=>{
+module.exports.ChangeDescription = async (req, res) => {
     const description = req.body.description;
     await db.collection("users").doc(req.user.email).update({
-        description: description
+        description: description,
     });
     res.redirect("/");
 };
