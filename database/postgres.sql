@@ -46,7 +46,7 @@ INSERT INTO score VALUES ('usr101','12','11','14','15','4.2');
 INSERT INTO score VALUES ('usr102','2','131','13','14','3');
 INSERT INTO score VALUES ('usr103','122','111','23','35','4.7');
 INSERT INTO score VALUES ('usr104','121','41','24','55','3.6');
-INSERT INTO score VALUES ('usr105','1','14','11','75','1.2');
+INSERT INTO score VALUES ('usr105','1','14','11','75','1.2','0');
 
 
 INSERT INTO client VALUES ('cli101','random user','q3q8x8');
@@ -65,4 +65,4 @@ INSERT INTO client VALUES ('cli107','new user 7','fgwmrh');
 -- );
 --
 --
-drop table earnings,location,score,client;
+-- drop table earnings,location,score,client;

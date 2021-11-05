@@ -12,8 +12,8 @@ module.exports.NewUser = async(data)=>{
             [data.id,0,0]//todo location lat long
         );
         const score = await pool.query(
-            "INSERT INTO score VALUES ($1,$2,$3,$4,$5,$6)",
-            [data.id,0,0,0,0,0]
+            "INSERT INTO score VALUES ($1,$2,$3,$4,$5,$6,$7)",
+            [data.id,0,0,0,0,0,0]
         );
         console.log(`new user added ${data.id}`);
     } catch (err) {
@@ -30,7 +30,7 @@ module.exports.NewReferral = async(req, res)=>{
             [inc_score, ambassadorID]
         );
         console.log(`referral count increased for ${ambassadorID}`);
-        res.redirect("/");
+        res.redirect("/client");
     } catch (err) {
         console.log(err.message);
     }
@@ -58,4 +58,26 @@ module.exports.MyReferrals = async(req,res)=>{
         })
     }
 
+};
+
+module.exports.NewFeedback = async (req,res)=>{
+    let ambassadorID = req.body.ambassador_id;
+    let feed = req.body.feedback;
+    let inc_score = 1;
+    try {
+        const feedback_count = await pool.query(
+            "UPDATE score SET feedback_count = feedback_count + ($1) WHERE user_id = ($2)",
+            [inc_score, ambassadorID]
+        )
+
+        const feedback = await pool.query(
+            "UPDATE score SET feedback = (feedback + ($1))/feedback_count WHERE user_id = ($2) ",
+            [feed, ambassadorID]
+        );
+
+        console.log(`feedback updates for ${ambassadorID}`);
+        res.redirect("/client");
+    } catch (err) {
+        console.log(err.message);
+    }
 };

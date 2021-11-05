@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include ('head.ejs') %>
+    <link rel="stylesheet" href="/public/css/login.css">
+    <style>
+        .item {
+            width: 75px;
+            height: 75px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            user-select: none;
+        }
+        .radio {
+            display: none;
+        }
+        .radio ~ span {
+            font-size: 3rem;
+            filter: grayscale(100);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .radio:checked ~ span {
+            filter: grayscale(0);
+            font-size: 4rem;
+        }
+    </style>
+</head>
+<body>
+    <%- include ('header.ejs') %>
+    <div class="container center">
+        <div class=form-wrapper>
+            <form action="/client/feedback" method="post">
+                <div class="form-group">
+                    <h3>FEEDBACK</h3>
+                </div>
+                <div class="form-group m-3">
+                    <div class="center">
+                        <div class="item">
+                            <label for="1">
+                                <input class="radio" type="radio" name="feedback" id="1" value="1">
+                                <span>😡</span>
+                            </label>
+                        </div>
+                        <div class="item">
+                            <label for="2">
+                                <input class="radio" type="radio" name="feedback" id="2" value="2">
+                                <span>🙁</span>
+                            </label>
+                        </div>
+
+                        <div class="item">
+                            <label for="3">
+                                <input class="radio" type="radio" name="feedback" id="3" value="3">
+                                <span>😐</span>
+                            </label>
+                        </div>
+
+                        <div class="item">
+                            <label for="4">
+                                <input class="radio" type="radio" name="feedback" id="4" value="4">
+                                <span>😁</span>
+                            </label>
+                        </div>
+
+                        <div class="item">
+                            <label for="5">
+                                <input class="radio" type="radio" name="feedback" id="5" value="5">
+                                <span>😍</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="email">Ambassador ID</label>
+                    <input id="ambassador_id" name="ambassador_id" class="form-input" type="text" required/>
+                </div>
+                <div class="form-group center">
+                    <button type="submit">SUBMIT</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+<script src="/public/js/login.js"></script>
+<script src="/public/js/main-header.js"></script>
+</body>
+</html>

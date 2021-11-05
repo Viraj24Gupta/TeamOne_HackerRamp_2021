@@ -28,6 +28,12 @@ router.get("/client/referral/:id",function (req, res){
     });
 });
 
+router.get("/client/feedback",function (req, res){
+    res.render("./client/feedback", {title: "Feedback"});
+});
+
 router.post("/client/referral",pgController.NewReferral);
+
+router.post("/client/feedback",pgController.NewFeedback);
 
 module.exports = router;
