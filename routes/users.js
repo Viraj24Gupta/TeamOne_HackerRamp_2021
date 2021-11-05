@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const pgController = require("../controllers/pgController");
+const userController = require("../controllers/userController");
 
 router.get("/profile", (req, res)=> {
     if (!req.isAuthenticated()) {
@@ -18,6 +19,8 @@ router.get("/profile", (req, res)=> {
     }
 })
 
+router.post("/change_description",userController.ChangeDescription);
+
 router.get("/referrals", pgController.MyReferrals)
 
 router.get("/earnings", (req, res)=> {
@@ -26,22 +29,6 @@ router.get("/earnings", (req, res)=> {
     } else {
         res.render('earning', {title: "Earnings"})
 
-    }
-})
-
-router.get("/about", (req, res)=> {
-    if (!req.isAuthenticated()) {
-        res.render("home", { title: "Myntra Ambassador" });
-    } else {
-        res.render('about', {title: "About"})
-    }
-})
-
-router.get("/contact", (req, res)=> {
-    if (!req.isAuthenticated()) {
-        res.render("home", { title: "Myntra Ambassador" });
-    } else {
-        res.render('contact', {title: "Contact"})
     }
 })
 

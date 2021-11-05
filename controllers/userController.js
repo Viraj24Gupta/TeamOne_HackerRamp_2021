@@ -62,3 +62,11 @@ module.exports.ChangePassword = async (req, res)=>{
     });
     res.redirect("/");
 };
+
+module.exports.ChangeDescription = async (req,res)=>{
+    const description = req.body.description;
+    await db.collection("users").doc(req.user.email).update({
+        description: description
+    });
+    res.redirect("/");
+};

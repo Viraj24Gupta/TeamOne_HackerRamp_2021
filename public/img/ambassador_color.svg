@@ -71,16 +71,16 @@
         fill: #ee6055;
         }
         25% {
-        fill: #60d394;
+        fill: #c71585;
         }
         50% {
-        fill: #aaf683;
+        fill: #ff4500;
         }
         75% {
-        fill: #ffd97d;
+        fill: #ff3f6c;
         }
         100% {
-        fill: #ff9b85;
+        fill: #ff3f6c;
         }
         }
 

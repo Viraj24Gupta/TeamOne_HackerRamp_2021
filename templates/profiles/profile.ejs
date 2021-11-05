@@ -2,9 +2,78 @@
 <html lang="en">
 <head>
     <%- include ('../head.ejs') %>
+    <style>
+        body {
+            font-size: 1.2rem;
+        }
+        .user_image {
+            border-radius: 25px;
+        }
+        .main {
+            display: flex;
+            flex: 1;
+            align-content: center;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .row {
+            margin: 10px;
+        }
+        .refer {
+            color: #ff3f6c;
+        }
+        .box {
+            word-wrap: break-word;
+            margin-left: 25vw;
+            margin-right: 25vw;
+        }
+    </style>
 </head>
 <body>
     <%- include ('../header.ejs') %>
-    <div class="header-padding"><%= id %></div>
+    <div class="center">
+        <div class="container w-75 main header-padding m-3">
+            <div class="row center">
+                <img src="/public/img/user-image.png" class="user_image" width="25%" alt="user_image">
+            </div>
+            <div class="row">
+                <h3><%= name %></h3>
+            </div>
+            <div class="row">
+                <a class="refer" href="/client/referral/<%= id %>">Refer</a>
+            </div>
+            <div class="row">
+                <div>
+                    <%= m_number %><br/>
+                    <small class="text-muted">Mobile Number</small>
+                </div>
+            </div>
+            <div class="row">
+                <div>
+                    <%= email %><br/>
+                    <small class="text-muted">E-Mail</small>
+                </div>
+            </div>
+            <div class="row">
+                <div>
+                    <img class="mr-2" src="/public/img/pin.svg" alt="map icon"/>
+                    <%= location %>
+                </div>
+            </div>
+            <div class="row">
+                <div>
+                    <%= address %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="box">
+            <p>
+                <%= description %>
+            </p>
+        </div>
+    </div>
 </body>
 </html>

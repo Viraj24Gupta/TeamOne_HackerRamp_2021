@@ -17,9 +17,10 @@ CREATE TABLE score(
     user_id     VARCHAR(6) PRIMARY KEY,
     lm_count    int,
     returns_req int,
-    returns_res int,
+    concierge int,
     ref_count   int,
-    feedback    float
+    feedback    float,
+    feedback_count int
 );
 
 CREATE TABLE client(
@@ -49,6 +50,7 @@ INSERT INTO score VALUES ('usr105','1','14','11','75','1.2');
 
 
 INSERT INTO client VALUES ('cli101','random user','q3q8x8');
+INSERT INTO client VALUES ('cli102','random user','q3q8x8');
 INSERT INTO client VALUES ('cli102','new user 2','usr102');
 INSERT INTO client VALUES ('cli103','new user 3','usr103');
 INSERT INTO client VALUES ('cli104','new user 4','usr104');
@@ -63,4 +65,4 @@ INSERT INTO client VALUES ('cli107','new user 7','fgwmrh');
 -- );
 --
 --
--- drop table earnings,location,score,client;
+drop table earnings,location,score,client;

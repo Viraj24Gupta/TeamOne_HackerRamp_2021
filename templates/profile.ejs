@@ -34,7 +34,7 @@
                                <tbody>
                                 <tr>
                                     <td>Unique ID:</td>
-                                    <td><%= userID %></td>
+                                    <td><a href="/ambassador/<%= userID %>" target="_blank"><%= userID %></a></td>
                                 </tr>
                                 <tr>
                                     <td>Name:</td>
@@ -52,6 +52,17 @@
                                     <td>Address:</td>
                                     <td><%= address %></td>
                                 </tr>
+                                <form action="/change_description" method="post">
+                                    <tr>
+                                        <td>Description</td>
+                                        <td>
+                                            <div class="center d-f-w">
+                                                <textarea name="description" id="description"></textarea>
+                                                <button type="submit">CHANGE</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </form>
                                 </tbody>
                             </table>
                             <h4>Referral QR code: </h4>

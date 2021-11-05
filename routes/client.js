@@ -2,13 +2,9 @@ const express = require("express");
 const router = express.Router();
 
 const pgController = require("../controllers/pgController")
+const profileController = require("../controllers/profileController")
 
-router.get("/ambassador/:id",function(req,res){
-    res.render("./profiles/profile", {
-        title: "Ambassador Profile",
-        id: req.params.id
-    });
-});
+router.get("/ambassador/:id",profileController.GetProfile);
 
 router.get("/client",function (req, res){
     res.render("./client/home", {title: "User"});

@@ -37,3 +37,15 @@ button:hover {
     color: #FEFEFE;
     transition: ease-in 0.4s;
 }
+
+#description{
+    height: auto;
+    min-height: 150px;
+    margin: 5px;
+    background-color: transparent;
+}
+
+#description:focus {
+    border: 1px solid #ff3f6c;
+    outline: none;
+}
