@@ -21,6 +21,12 @@ router.get("/client/referral",function (req, res){
     });
 });
 
+router.get("/client/add_last_mile",function (req, res){
+    res.render("./client/last_mile", {
+        title: "Last Mile",
+    });
+});
+
 router.get("/client/referral/:id",function (req, res){
     res.render("./client/referral", {
         title: "Refer",
@@ -34,6 +40,11 @@ router.get("/client/feedback",function (req, res){
 
 router.post("/client/referral",pgController.NewReferral);
 
+router.post("/client/add_last_mile",pgController.Random_Last_Mile);
+
 router.post("/client/feedback",pgController.NewFeedback);
+
+router.post("/last_mile_post",pgController.LastMilePost);
+
 
 module.exports = router;

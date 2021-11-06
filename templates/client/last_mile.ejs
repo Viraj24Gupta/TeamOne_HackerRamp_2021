@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include ('head.ejs') %>
+    <link rel="stylesheet" href="/public/css/login.css">
+</head>
+<body>
+    <%- include ('header.ejs') %>
+    <div class="container center header-padding">
+        <div class=form-wrapper>
+            <form action="/client/add_last_mile" method="post">
+                <div class="form-group">
+                    <h3>LAST MILE DELIVERY</h3>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="email">Ambassador ID</label>
+                    <input id="ambassador_id" name="ambassador_id" class="form-input" type="text" required/>
+                </div>
+                <div class="form-group center">
+                    <button type="submit">ADD</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+<script src="/public/js/login.js"></script>
+<script src="/public/js/main-header.js"></script>
+</body>
+</html>

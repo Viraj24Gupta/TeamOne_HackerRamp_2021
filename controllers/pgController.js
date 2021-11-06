@@ -1,6 +1,29 @@
 const express = require("express");
 const pool = require("../config/postgres");
 
+module.exports.Dashboard = async (req, res) => {
+    if (!req.isAuthenticated()) {
+        res.render("home", { title: "Myntra Ambassador" });
+    } else {
+        let my_id = req.user.id;
+        let get_all_last_mile;
+
+        try {
+            get_all_last_mile = await pool.query(
+                "SELECT * FROM last_mile WHERE ambassador_id = ($1)",
+                [my_id]
+            );
+        } catch (err) {
+            console.log(err.message);
+        }
+        res.render("dashboard", {
+            title: "Myntra Ambassador",
+            meter: "50%",
+            last_mile_data: get_all_last_mile.rows,
+        });
+    }
+};
+
 module.exports.NewUser = async(data)=>{
     try {
         const earnings =  await pool.query(
@@ -86,6 +109,52 @@ module.exports.NewFeedback = async (req,res)=>{
 
         console.log(`feedback updates for ${ambassadorID}`);
         res.redirect("/client");
+    } catch (err) {
+        console.log(err.message);
+    }
+};
+
+module.exports.Random_Last_Mile = async (req,res) => {
+    let ambassadorID = req.body.ambassador_id;
+    let random_id = Math.floor(100000 + Math.random() * 900000);
+    let random_name = `John Doe ${Math.random().toString(36).slice(-2)}'s Delivery`;
+
+    try {
+        const last_mile = await pool.query(
+            "INSERT INTO last_mile VALUES ($1,$2,$3)",
+            [random_id, random_name, ambassadorID]
+        );
+        console.log(`random last_mile data ${ambassadorID}`);
+        res.redirect("/client");
+    } catch (err) {
+        console.log(err.message);
+    }
+};
+
+module.exports.LastMilePost = async (req,res) => {
+    let ambassadorID = req.user.id;
+    let client_id = req.body.client_id;
+    let bool_check = req.body.bool_check;
+    let inc_score = 1;
+
+    try {
+        if (bool_check == "yes") {
+            const last_mile = await pool.query(
+                "DELETE FROM last_mile WHERE client_id = ($1)",
+                [client_id]
+            );
+            const score = await pool.query(
+                "UPDATE score SET lm_count = lm_count + ($1) WHERE user_id = ($2)",
+                [inc_score, ambassadorID]
+            );
+        }
+        else if (bool_check == "no") {
+            const last_mile = await pool.query(
+                "DELETE FROM last_mile WHERE client_id = ($1)",
+                [client_id]
+            );
+        }
+        res.redirect("/");
     } catch (err) {
         console.log(err.message);
     }

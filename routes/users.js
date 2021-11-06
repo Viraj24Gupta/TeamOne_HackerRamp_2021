@@ -3,6 +3,8 @@ const router = express.Router();
 const pgController = require("../controllers/pgController");
 const userController = require("../controllers/userController");
 
+router.get("/", pgController.Dashboard);
+
 router.get("/profile", (req, res) => {
     if (!req.isAuthenticated()) {
         res.render("home", { title: "Myntra Ambassador" });

@@ -43,8 +43,6 @@ module.exports.createUser = async (req, res) => {
 };
 
 module.exports.createSession = (req, res) => {
-    console.log(req.user);
-    console.log(req.user.name);
     res.redirect("/");
 };
 

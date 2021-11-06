@@ -29,6 +29,12 @@ CREATE TABLE client(
     referee_id  VARCHAR(6)
 );
 
+CREATE TABLE last_mile(
+    client_id   VARCHAR(6) PRIMARY KEY,
+    client_name text,
+    ambassador_id   VARCHAR(6)
+);
+
 INSERT INTO earnings VALUES ('usr101','121.01','151.01','201.01');
 INSERT INTO earnings VALUES ('usr102','122.02','152.02','202.02');
 INSERT INTO earnings VALUES ('usr103','123.03','153.03','203.03');
