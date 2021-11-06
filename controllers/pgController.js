@@ -8,8 +8,14 @@ module.exports.Dashboard = async (req, res) => {
         let my_id = req.user.id;
         let get_all_last_mile;
         let get_all_return_req;
+        let allScores;
+        let rank;
 
         try {
+            allScores = await pool.query(
+                "SELECT * FROM score WHERE user_id = ($1)",
+                [my_id]
+            );
             get_all_last_mile = await pool.query(
                 "SELECT * FROM last_mile WHERE ambassador_id = ($1)",
                 [my_id]
@@ -18,14 +24,63 @@ module.exports.Dashboard = async (req, res) => {
                 "SELECT * FROM return_request WHERE ambassador_id = ($1)",
                 [my_id]
             );
+            rank = await pool.query(
+                "SELECT PERCENT_RANK() OVER(ORDER BY final) FROM final WHERE user_id = ($1)",
+                [my_id]
+            );
         } catch (err) {
             console.log(err.message);
         }
+
+        let score = allScores.rows[0];
+        let calc_score =    score.lm_count + (score.concierge/score.returns_req) + score.ref_count + score.feedback;
+        console.log(calc_score);
+        console.log(rank.rows[0].percent_rank);
+        //todo percent rank 0 for all
+        //todo returns req 0 gives err initially
+
+        let meterProgress = 35;
+
         res.render("dashboard", {
             title: "Myntra Ambassador",
-            meter: "50%",
+            meter: `${meterProgress}%`,
             last_mile_data: get_all_last_mile.rows,
             return_req_data: get_all_return_req.rows,
+            rank: rank.rows[0],
+        });
+
+        try {
+            const last_mile = await pool.query(
+                "UPDATE final SET final = ($1) WHERE user_id = ($2)",
+                [calc_score, my_id]
+            );
+            console.log(`score updated`);
+        } catch (err) {
+            console.log(err.message);
+        }
+
+    }
+};
+
+module.exports.Earnings = async (req,res) => {
+    let ambassadorID = req.user.id;
+    let earningsData;
+
+    try {
+        earningsData = await pool.query(
+            "SELECT * FROM earnings WHERE user_id = ($1)",
+            [ambassadorID]
+        );
+    } catch (err) {
+        console.log(err.message);
+    }
+
+    if (!req.isAuthenticated()) {
+        res.render("home", { title: "Myntra Ambassador" });
+    } else {
+        res.render("earning", {
+            title: "Earnings",
+            data: earningsData.rows[0]
         });
     }
 };
@@ -33,8 +88,8 @@ module.exports.Dashboard = async (req, res) => {
 module.exports.NewUser = async(data)=>{
     try {
         const earnings =  await pool.query(
-            "INSERT INTO earnings VALUES ($1,$2,$3,$4)",
-            [data.id,0,0,0]
+            "INSERT INTO earnings VALUES ($1,$2,$3)",
+            [data.id,0,0]
         );
         const location = await pool.query(
             "INSERT INTO location VALUES ($1,$2,$3)",
@@ -44,6 +99,10 @@ module.exports.NewUser = async(data)=>{
             "INSERT INTO score VALUES ($1,$2,$3,$4,$5,$6,$7)",
             [data.id,0,0,0,0,0,0]
         );
+        const final = await pool.query(
+            "INSERT INTO final VALUES ($1,$2)",
+            [data.id,0]
+        )
         console.log(`new user added ${data.id}`);
     } catch (err) {
         console.log(err.message);
@@ -165,6 +224,7 @@ module.exports.LastMilePost = async (req,res) => {
     let client_id = req.body.client_id;
     let bool_check = req.body.bool_check;
     let inc_score = 1;
+    let LastMile_earn = 10;
 
     try {
         if (bool_check == "yes") {
@@ -175,6 +235,10 @@ module.exports.LastMilePost = async (req,res) => {
             const score = await pool.query(
                 "UPDATE score SET lm_count = lm_count + ($1) WHERE user_id = ($2)",
                 [inc_score, ambassadorID]
+            );
+            const earning = await pool.query(
+                "UPDATE earnings SET lm_earning = lm_earning + ($1) WHERE user_id = ($2)",
+                [LastMile_earn, ambassadorID]
             );
         }
         else if (bool_check == "no") {
@@ -194,6 +258,7 @@ module.exports.ReturnRequests = async (req,res) => {
     let client_id = req.body.client_id;
     let bool_check = req.body.response;
     let inc_score = 1;
+    let concierge_earn = 30;
 
     try {
         if (bool_check == "concierge") {
@@ -204,6 +269,10 @@ module.exports.ReturnRequests = async (req,res) => {
             const score = await pool.query(
                 "UPDATE score SET concierge = concierge + ($1) WHERE user_id = ($2)",
                 [inc_score, ambassadorID]
+            );
+            const earning = await pool.query(
+                "UPDATE earnings SET conc_earning = conc_earning + ($1) WHERE user_id = ($2)",
+                [concierge_earn, ambassadorID]
             );
         }
         else if (bool_check == "returned") {
@@ -216,4 +285,17 @@ module.exports.ReturnRequests = async (req,res) => {
     } catch (err) {
         console.log(err.message);
     }
+};
+
+module.exports.NearMe = async (req, res) => {
+    let nearMeData;
+    try {
+        nearMeData = await pool.query(
+            "SELECT * FROM location"
+        );
+    } catch (err) {
+        console.log(err.message);
+    }
+
+    nearMeData.rows[0];
 };

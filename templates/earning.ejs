@@ -2,10 +2,34 @@
 <html lang="en">
 <head>
     <%- include ('head.ejs') %>
+    <style>
+        .fd {
+            flex-direction:  column;
+            font-size: 1.3rem;
+        }
+    </style>
 </head>
 <body>
     <%- include ('main_header.ejs') %>
 
+    <div>
+        <table class="table fd center table-hover table-striped table-responsive">
+            <tbody>
+            <tr>
+                <td>Last Mile Earnings</td>
+                <td>Concierge Service Earnings</td>
+                <td>Total</td>
+            </tr>
+
+            <tr>
+                <td><span class="iconify" data-icon="lucide:indian-rupee"></span><%= data.lm_earning %></td>
+                <td><span class="iconify" data-icon="lucide:indian-rupee"></span><%= data.conc_earning %></td>
+                <td><span class="iconify" data-icon="lucide:indian-rupee"></span><%=  data.lm_earning + data.conc_earning  %></td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
 
 <script src="/public/js/main-header.js"></script>
 </body>

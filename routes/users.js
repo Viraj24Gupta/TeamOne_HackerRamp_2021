@@ -25,12 +25,6 @@ router.post("/change_description", userController.ChangeDescription);
 
 router.get("/referrals", pgController.MyReferrals);
 
-router.get("/earnings", (req, res) => {
-    if (!req.isAuthenticated()) {
-        res.render("home", { title: "Myntra Ambassador" });
-    } else {
-        res.render("earning", { title: "Earnings" });
-    }
-});
+router.get("/earnings", pgController.Earnings);
 
 module.exports = router;

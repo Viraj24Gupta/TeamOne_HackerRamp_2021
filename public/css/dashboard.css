@@ -24,5 +24,6 @@
 @media only screen and (max-width: 720px) {
     .level, .target {
         width: 100%;
+        max-width: 100%;
     }
 }

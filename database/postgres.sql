@@ -2,7 +2,6 @@ CREATE DATABASE ma21;
 
 CREATE TABLE earnings(
     user_id      VARCHAR(6)PRIMARY KEY,
-    ref_earning  FLOAT,
     lm_earning   FLOAT,
     conc_earning FLOAT
 );
@@ -41,7 +40,12 @@ CREATE TABLE return_request(
     ambassador_id   VARCHAR(6)
 );
 
-INSERT INTO earnings VALUES ('usr101','121.01','151.01','201.01');
+CREATE TABLE final(
+    user_id VARCHAR(6) PRIMARY KEY,
+    final  float
+);
+
+INSERT INTO earnings VALUES ('q3q8x8','0','0');
 INSERT INTO earnings VALUES ('usr102','122.02','152.02','202.02');
 INSERT INTO earnings VALUES ('usr103','123.03','153.03','203.03');
 INSERT INTO earnings VALUES ('usr104','124.04','154.04','204.04');
