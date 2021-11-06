@@ -27,6 +27,12 @@ router.get("/client/add_last_mile",function (req, res){
     });
 });
 
+router.get("/client/add_return_requests",function (req, res){
+    res.render("./client/return_req", {
+        title: "Returns",
+    });
+});
+
 router.get("/client/referral/:id",function (req, res){
     res.render("./client/referral", {
         title: "Refer",
@@ -42,9 +48,13 @@ router.post("/client/referral",pgController.NewReferral);
 
 router.post("/client/add_last_mile",pgController.Random_Last_Mile);
 
+router.post("/client/add_return_requests",pgController.Random_Return_Request);
+
 router.post("/client/feedback",pgController.NewFeedback);
 
 router.post("/last_mile_post",pgController.LastMilePost);
+
+router.post("/return_service_post",pgController.ReturnRequests);
 
 
 module.exports = router;

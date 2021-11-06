@@ -7,10 +7,15 @@ module.exports.Dashboard = async (req, res) => {
     } else {
         let my_id = req.user.id;
         let get_all_last_mile;
+        let get_all_return_req;
 
         try {
             get_all_last_mile = await pool.query(
                 "SELECT * FROM last_mile WHERE ambassador_id = ($1)",
+                [my_id]
+            );
+            get_all_return_req = await pool.query(
+                "SELECT * FROM return_request WHERE ambassador_id = ($1)",
                 [my_id]
             );
         } catch (err) {
@@ -20,6 +25,7 @@ module.exports.Dashboard = async (req, res) => {
             title: "Myntra Ambassador",
             meter: "50%",
             last_mile_data: get_all_last_mile.rows,
+            return_req_data: get_all_return_req.rows,
         });
     }
 };
@@ -131,6 +137,29 @@ module.exports.Random_Last_Mile = async (req,res) => {
     }
 };
 
+module.exports.Random_Return_Request = async (req,res) => {
+    let ambassadorID = req.body.ambassador_id;
+    let random_id = Math.floor(100000 + Math.random() * 900000);
+    let random_name = `John Doe ${Math.random().toString(36).slice(-2)}'s Return Request`;
+    let inc_score = 1;
+
+    try {
+        const last_mile = await pool.query(
+            "INSERT INTO return_request VALUES ($1,$2,$3)",
+            [random_id, random_name, ambassadorID]
+        );
+
+        const score = await pool.query(
+            "UPDATE score SET returns_req = returns_req + ($1) WHERE user_id = ($2)",
+            [inc_score, ambassadorID]
+        );
+        console.log(`random return_request data ${ambassadorID}`);
+        res.redirect("/client");
+    } catch (err) {
+        console.log(err.message);
+    }
+};
+
 module.exports.LastMilePost = async (req,res) => {
     let ambassadorID = req.user.id;
     let client_id = req.body.client_id;
@@ -151,6 +180,35 @@ module.exports.LastMilePost = async (req,res) => {
         else if (bool_check == "no") {
             const last_mile = await pool.query(
                 "DELETE FROM last_mile WHERE client_id = ($1)",
+                [client_id]
+            );
+        }
+        res.redirect("/");
+    } catch (err) {
+        console.log(err.message);
+    }
+};
+
+module.exports.ReturnRequests = async (req,res) => {
+    let ambassadorID = req.user.id;
+    let client_id = req.body.client_id;
+    let bool_check = req.body.response;
+    let inc_score = 1;
+
+    try {
+        if (bool_check == "concierge") {
+            const return_request = await pool.query(
+                "DELETE FROM return_request WHERE client_id = ($1)",
+                [client_id]
+            );
+            const score = await pool.query(
+                "UPDATE score SET concierge = concierge + ($1) WHERE user_id = ($2)",
+                [inc_score, ambassadorID]
+            );
+        }
+        else if (bool_check == "returned") {
+            const return_request = await pool.query(
+                "DELETE FROM return_request WHERE client_id = ($1)",
                 [client_id]
             );
         }
