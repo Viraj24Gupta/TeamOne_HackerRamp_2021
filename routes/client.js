@@ -10,7 +10,7 @@ router.get("/client", function (req, res) {
     res.render("./client/home", { title: "User" });
 });
 
-router.post("/client/near-me", function (req, res) {
+router.post("/client/near-me", async (req, res) => {
     const userLatitude = req.body.latitude;
     const userLongitude = req.body.longitude;
     const r = 6371e3; // metres
@@ -26,6 +26,17 @@ router.post("/client/near-me", function (req, res) {
             Math.sin(deltaLambda / 2) *
             Math.sin(deltaLambda / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    let nearMeData;
+    try {
+        nearMeData = await pool.query(
+            "SELECT * FROM location"
+        );
+    } catch (err) {
+        console.log(err.message);
+    }
+
+    console.log(nearMeData.rows);
 
     const d = r * c; // in metres
     res.render("./client/nearme", { title: "Near Me" });

@@ -5,6 +5,18 @@
         #longitude{
             display:none;
         }
+        #loc {
+            border: none!important;
+            color: darkred!important;
+            font-size: 1.2rem;
+            translate: transform(0,-15%)!important;
+            margin: 0!important;
+            padding: 0!important;
+            background: transparent;
+        }
+        #loc:hover {
+            background: transparent;
+        }
     </style>
     <div class="nav-wrapper1">
         <nav class="navbar1">
@@ -26,7 +38,7 @@
                     <form action="/client/near-me" method="POST">
                         <input type="text" name="latitude" id="latitude">
                         <input type="text" name="longitude" id="longitude">
-                        <button>Ambassadors Near</button>
+                        <button id="loc">Ambassadors Near Me</button>
                     </form>
                 </li>
                 <li class="nav-item1"><a href="/client/referral" class="orange">Refer from Ambassador</a></li>
