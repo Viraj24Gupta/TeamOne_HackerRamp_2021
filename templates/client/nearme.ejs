@@ -29,45 +29,40 @@
     <div class="center mt-3">
 
 
+        <% for(var i=0; i < data.length; i++) { %>
         <div class="card w-75 mb-3">
             <div class="row rounded jc">
                 <div class="col-md-11 pt-3 pl-3">
                     <div class="card-body al">
                         <div class="media">
                             <div class="media-body">
-                                <a class="btn float-right mr-4 d-none d-md-block" href="{{.ProfileLink}}">Visit Profile</a>
-                                <h5><strong><a class="profile-link" href="{{.ProfileLink}}">{{.Name}}</a></strong></h5>
+                                <a class="btn float-right mr-4 d-none d-md-block" href="/ambassador/<%= data[i].id %>">Visit Profile</a>
+                                <h5><strong><a class="profile-link" href="/ambassador/<%= data[i].id %>"><%= data[i].name %></a></strong></h5>
                                 <p class="list-inline text-muted">
-                                    {{.Profession}}
-                                    {{.Area}}
+                                    <img class="mr-2" src="/public/img/pin.svg" alt="map icon"/><%= data[i].address %>
                                 </p>
-                                {{ range .Tags}}
-                                    {{if .HasLink}}
-                                        <a href="{{.Link}}" title="{{.Text}} designs" target="_blank"><span class="badge badge-pill text-muted amp-tag">{{.Text}}</span></a>
-                                    {{else}}
-                                        <span class="badge badge-pill text-muted">{{.Text}}</span>
-                                    {{end}}
-                                {{ end }}
+                                <%= data[i].description %>
                             </div>
                         </div>
                         <div class="row mt-5">
                             <div class="col">
-                                <small class="text-muted">Experience</small><br/>
-                                {{.Experience}} Years
+                                <small class="text-muted">E-Mail</small><br/>
+                                <%= data[i].email %>
                             </div>
                             <div class="col">
-                                <small class="text-muted">Company</small><br/>
-                                {{.Company}}
+                                <small class="text-muted">Mobile Number</small><br/>
+                                <%= data[i].number %>
                             </div>
                             <div class="col">
-                                <small class="text-muted">Followers</small><br/>
-                                {{.FollowersCount}}
+                                <small class="text-muted">Distance</small><br/>
+                                <%= data[i].distance %>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <% } %>
 
 
 

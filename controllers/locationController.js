@@ -58,5 +58,11 @@ module.exports.nearMe = async (req, res) => {
     data.sort((a, b) => {
         return a.distance - b.distance;
     });
-    res.render("./client/nearme", { title: "Near Me", data: data });
+    for (let i=0; i< data.length ; i++){
+        console.log(data[i].name);
+    }
+    res.render("./client/nearme", {
+        title: "Near Me",
+        data: data
+    });
 };

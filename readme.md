@@ -1,44 +1,45 @@
-Aunty (unique id, qr code)-->
-1. Onboarding page<br/>
-   1.1. lat long 5 km radius (nearby stores for user)
-2. aunty ki levels --><br/>
-   2.1 conversion rate of returns
-3. return details (fit alteration)
-4. last mile delivery (number)
-5. (onboarding,return rate, no. last mile, feedback)
+# Myntra Ambassador Program - our submission for Myntra HackerRamp 2021
 
-(if possible)
-6. visualization of aunty ka data for insiders
+### Introduction
 
+### Requirements:
+1. NodeJs [Install NodeJs](https://nodejs.org/en/download/)
+2. Docker [Install Docker](https://docs.docker.com/desktop/windows/install/)
+   <br/>compile the `docker-compose.yml` file by running `$ docker-compose up` in a linux terminal or Windows subsystem for linux 2 `WSL2`.
+3. Setup Windows subsystem for linux [WSL2](https://docs.microsoft.com/en-gb/windows/wsl/install-win10)
 
-1-->
-1. email
-2. name
-3. phone
-4. lat long
-5. aadhar
-6. address proof of the shop(otp by postage)
+#### Note:<br/> if your system has `redis` or `postgres` already installed then you do not require to add the docker images.
 
-future
-8. link your myntra studio acc
+### Dotenv File and Firebase Service Account Key
+1. .env structure :-<br/>
+   `PORT = "<port address>"`<br/>
+    `secret = "<any string>"`<br/>
+    `POSTGRES_USER = "<postgres user name>"`<br/>
+    `POSTGRES_PASSWORD = "<postgres password>"`<br/>
+    `POSTGRES_HOST = "<host name>"`<br/>
+    `POSTGRES_PORT = <postgres port>`<br/>
+    `POSTGRES_DATABASE = "<databaase name>"`<br/>
+    `domainURL = "http://localhost:8000"`<br/>
+2. firebase service account key :- [help link](https://stackoverflow.com/questions/40799258/where-can-i-get-serviceaccountcredentials-json-for-firebase-admin) <br/>
+   `{`<br/>
+   `"type": "",`<br/>
+   `"project_id": "",`<br/>
+   `"private_key_id": "",`<br/>
+   `"private_key": "",`<br/>
+   `"client_email": "",`<br/>
+   `"client_id": "",`<br/>
+   `"auth_uri": "",`<br/>
+   `"token_uri": "",`<br/>
+   `"auth_provider_x509_cert_url": "",`<br/>
+   `"client_x509_cert_url": ""`<br/>
+   `}`<br/>
 
-## run
-1. docker-compose up
-2. docker exec -it teamone_hackerramp_2021-postgres-1 psql -U postgres -h localhost -w
-3. create database scores;
+### Now,
+1. clone the repo.
+2. Open the project folder.
+3. run `$ npm start`
 
-## sore table cols
-1. last mile count 
-2. return rate converion vs come
-3. user referral count
-4. feedback
-5. user score
-
-## user match ambassador
-1. distance b/w user coord and aunty coords
-2. traverse location table
-
-
-## score se level
-
-## return ke time conc
+### Contributors:
+1. Manit Mittal [Github](https://github.com/manitmittal) [LinkedIn](https://www.linkedin.com/in/manit-mittal-870035159/)
+2. Viraj Gupta [Github](https://github.com/Viraj24Gupta) [LinkedIn](https://www.linkedin.com/in/viraj24gupta/)
+3. Sahil Tiwari [Github](https://github.com/sahil-9898) [LinkedIn](https://www.linkedin.com/in/sahil-tiwari-307a61166/)
