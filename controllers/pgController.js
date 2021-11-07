@@ -34,11 +34,24 @@ module.exports.Dashboard = async (req, res) => {
         let score = allScores.rows[0];
         let calc_score =    score.lm_count + (score.concierge/score.returns_req) + score.ref_count + score.feedback;
 
-        let myrank, meterProgress = 35;
+        let myrank, meterProgress;
         for (let i=0; i<rank.rows.length; i++){
             if(rank.rows[i].user_id == my_id){
                 myrank = rank.rows[i].percent_rank;
+                if ( myrank >=0.75 && myrank <=1 ){
+                    meterProgress = (myrank - 0.75)/0.25 * 100;
+                }
+                else if ( myrank <0.75 && myrank>=0.50 ){
+                    meterProgress = (myrank - 0.50)/0.25 * 100;
+                }
+                else if ( myrank <0.5 && myrank >=0 ){
+                    meterProgress = (myrank - 0)/0.50 * 100;
+                }
             }
+        }
+
+        if (meterProgress == 0) {
+            meterProgress += 5;
         }
 
         res.render("dashboard", {
