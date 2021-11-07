@@ -45,22 +45,22 @@
             <div class="level card">
                 <div>
                     <h3 class="heading">CURRENT TIER</h3>
-                        <% if (rank.percent_rank <= 0.25) {%>
-                        <div>
-                            <img src="/public/img/gold.png" width="10%" alt="Gold Tier">
-                        </div>
-                        <small>GOLD</small>
-                        <%} else if (rank.percent_rank <=0.5 && rank.percent_rank > 0.25 ) {%>
-                        <div>
-                            <img src="/public/img/silver.png" width="10%" alt="Silver Tier">
-                        </div>
-                        <small>SILVER</small>
-                        <%} else if (rank.percent_rank >0.5 && rank.percent_rank <= 1 ){%>
-                        <div>
-                            <img src="/public/img/bronze.png" width="10%" alt="Bronze Tier">
-                        </div>
-                        <small>BRONZE</small>
-                        <%}%>
+                    <% if (rank <= 1 && rank >=0.75) { %>
+                    <div>
+                    <img src="/public/img/gold.png" width="10%" alt="Gold Tier">
+                    </div>
+                    <small>GOLD</small>
+                    <%} else if (rank <0.75 && rank >= 0.50 ) { %>
+                    <div>
+                    <img src="/public/img/silver.png" width="10%" alt="Silver Tier">
+                    </div>
+                    <small>SILVER</small>
+                    <%} else if (rank <0.5 && rank >= 0 ) { %>
+                    <div>
+                    <img src="/public/img/bronze.png" width="10%" alt="Bronze Tier">
+                    </div>
+                    <small>BRONZE</small>
+                    <% } %>
                 </div>
             </div>
         </div>

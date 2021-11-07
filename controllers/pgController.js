@@ -25,8 +25,7 @@ module.exports.Dashboard = async (req, res) => {
                 [my_id]
             );
             rank = await pool.query(
-                "SELECT PERCENT_RANK() OVER(ORDER BY final) FROM final WHERE user_id = ($1)",
-                [my_id]
+                "SELECT user_id,PERCENT_RANK() OVER(ORDER BY final) FROM final"
             );
         } catch (err) {
             console.log(err.message);
@@ -34,19 +33,21 @@ module.exports.Dashboard = async (req, res) => {
 
         let score = allScores.rows[0];
         let calc_score =    score.lm_count + (score.concierge/score.returns_req) + score.ref_count + score.feedback;
-        console.log(calc_score);
-        console.log(rank.rows[0].percent_rank);
-        //todo percent rank 0 for all
-        //todo returns req 0 gives err initially
 
-        let meterProgress = 35;
+        let myrank, meterProgress = 35;
+        for (let i=0; i<rank.rows.length; i++){
+            if(rank.rows[i].user_id == my_id){
+                myrank = rank.rows[i].percent_rank;
+            }
+        }
 
         res.render("dashboard", {
             title: "Myntra Ambassador",
+            myid: my_id,
             meter: `${meterProgress}%`,
             last_mile_data: get_all_last_mile.rows,
             return_req_data: get_all_return_req.rows,
-            rank: rank.rows[0],
+            rank: myrank,
         });
 
         try {
@@ -97,7 +98,7 @@ module.exports.NewUser = async(data)=>{
         );
         const score = await pool.query(
             "INSERT INTO score VALUES ($1,$2,$3,$4,$5,$6,$7)",
-            [data.id,0,0,0,0,0,0]
+            [data.id,0,1,0,0,0,0]
         );
         const final = await pool.query(
             "INSERT INTO final VALUES ($1,$2)",
