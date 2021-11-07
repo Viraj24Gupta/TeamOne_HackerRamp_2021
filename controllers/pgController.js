@@ -32,8 +32,7 @@ module.exports.Dashboard = async (req, res) => {
         }
 
         let score = allScores.rows[0];
-        let calc_score =    score.lm_count + (score.concierge/score.returns_req) + score.ref_count + score.feedback;
-
+        let calc_score =    score.lm_count + (score.concierge/score.returns_req)*3 + score.ref_count + (score.feedback/5);
         let myrank, meterProgress;
         for (let i=0; i<rank.rows.length; i++){
             if(rank.rows[i].user_id == my_id){
@@ -53,7 +52,7 @@ module.exports.Dashboard = async (req, res) => {
         if (meterProgress == 0) {
             meterProgress += 5;
         }
-
+        console.log(myrank);
         res.render("dashboard", {
             title: "Myntra Ambassador",
             myid: my_id,
