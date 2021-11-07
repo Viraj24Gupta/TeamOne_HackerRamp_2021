@@ -52,7 +52,6 @@ module.exports.Dashboard = async (req, res) => {
         if (meterProgress == 0) {
             meterProgress += 5;
         }
-        console.log(myrank);
         res.render("dashboard", {
             title: "Myntra Ambassador",
             myid: my_id,
