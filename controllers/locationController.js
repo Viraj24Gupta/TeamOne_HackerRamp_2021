@@ -28,6 +28,9 @@ module.exports.nearMe = async (req, res) => {
                 Math.sin(deltaLambda / 2);
         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         const d = r * c;
+        if (d > 10000){
+            continue;
+        }
         let result = {
             name: "",
             address: "",
@@ -58,11 +61,9 @@ module.exports.nearMe = async (req, res) => {
     data.sort((a, b) => {
         return a.distance - b.distance;
     });
-    for (let i=0; i< data.length ; i++){
-        console.log(data[i].name);
-    }
     res.render("./client/nearme", {
         title: "Near Me",
-        data: data
+        data: data,
+        err: "no available ambassadors near you"
     });
 };
