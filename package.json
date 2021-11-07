@@ -6,16 +6,8 @@
   "scripts": {
     "start": "nodemon app.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Viraj24Gupta/TeamOne_HackerRamp_2021.git"
-  },
   "author": "viraj,sahil,manit",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Viraj24Gupta/TeamOne_HackerRamp_2021/issues"
-  },
-  "homepage": "https://github.com/Viraj24Gupta/TeamOne_HackerRamp_2021#readme",
   "dependencies": {
     "argon2": "^0.28.2",
     "body-parser": "^1.19.0",
