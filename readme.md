@@ -1,6 +1,7 @@
 # Myntra Ambassador Program - our submission for Myntra HackerRamp 2021
 
-### Introduction
+### Introduction 
+This is our solution to the Myntra's HackerRamp 2021 Challenge to Enhance the User Experience and to improve inclusion of potential cutomer base from Tier-2 and Tier-3 Indian Cities through a Unique Ambassador Program while empowering the small business owners from those cities.
 
 ### Requirements:
 1. NodeJs [Install NodeJs](https://nodejs.org/en/download/)
