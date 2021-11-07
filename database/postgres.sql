@@ -46,10 +46,10 @@ CREATE TABLE final(
 );
 
 INSERT INTO earnings VALUES ('q3q8x8','0','0');
-INSERT INTO earnings VALUES ('usr102','122.02','152.02','202.02');
-INSERT INTO earnings VALUES ('usr103','123.03','153.03','203.03');
-INSERT INTO earnings VALUES ('usr104','124.04','154.04','204.04');
-INSERT INTO earnings VALUES ('usr105','125.05','155.05','205.05');
+-- INSERT INTO earnings VALUES ('usr102','122.02','152.02','202.02');
+-- INSERT INTO earnings VALUES ('usr103','123.03','153.03','203.03');
+-- INSERT INTO earnings VALUES ('usr104','124.04','154.04','204.04');
+-- INSERT INTO earnings VALUES ('usr105','125.05','155.05','205.05');
 
 INSERT INTO location VALUES ('usr101','28.704060','77.102493');
 INSERT INTO location VALUES ('usr102','28.669155','77.453758');
