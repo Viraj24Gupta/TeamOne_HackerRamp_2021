@@ -12,28 +12,31 @@ This is our solution to the Myntra's HackerRamp 2021 Challenge to Enhance the Us
 #### Note:<br/> if your system has `redis` or `postgres` already installed then you do not require to add the docker images.
 
 ### Dotenv File and Firebase Service Account Key
-1. .env structure :-<br/>
-   `PORT = "<port address>"`<br/>
-    `secret = "<any string>"`<br/>
-    `POSTGRES_USER = "<postgres user name>"`<br/>
-    `POSTGRES_PASSWORD = "<postgres password>"`<br/>
-    `POSTGRES_HOST = "<host name>"`<br/>
-    `POSTGRES_PORT = <postgres port>`<br/>
-    `POSTGRES_DATABASE = "<databaase name>"`<br/>
-    `domainURL = "http://localhost:8000"`<br/>
-2. firebase service account key :- [help link](https://stackoverflow.com/questions/40799258/where-can-i-get-serviceaccountcredentials-json-for-firebase-admin) <br/>
-   `{`<br/>
-   `"type": "",`<br/>
-   `"project_id": "",`<br/>
-   `"private_key_id": "",`<br/>
-   `"private_key": "",`<br/>
-   `"client_email": "",`<br/>
-   `"client_id": "",`<br/>
-   `"auth_uri": "",`<br/>
-   `"token_uri": "",`<br/>
-   `"auth_provider_x509_cert_url": "",`<br/>
-   `"client_x509_cert_url": ""`<br/>
-   `}`<br/>
+1. .env structure :-
+   ```
+   PORT = "<port address>"
+   secret = "<any string>"
+   POSTGRES_USER = "<postgres user name>"
+   POSTGRES_PASSWORD = "<postgres password>"
+   POSTGRES_HOST = "<host name>"
+   POSTGRES_PORT = <postgres port>
+   POSTGRES_DATABASE = "<databaase name>"
+   domainURL = "http://localhost:8000"
+   ```
+   
+2. firebase service account key :- [help link](https://stackoverflow.com/questions/40799258/where-can-i-get-serviceaccountcredentials-json-for-firebase-admin)
+   ```{
+   "type": "",
+   "project_id": "",
+   "private_key_id": "",
+   "private_key": "",
+   "client_email": "",
+   "client_id": "",
+   "auth_uri": "",
+   "token_uri": "",
+   "auth_provider_x509_cert_url": "",
+   "client_x509_cert_url": ""
+   }```
 
 ### Now,
 1. clone the repo.
