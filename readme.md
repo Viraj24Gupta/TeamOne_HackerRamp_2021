@@ -25,7 +25,8 @@ This is our solution to the Myntra's HackerRamp 2021 Challenge to Enhance the Us
    ```
    
 2. firebase service account key :- [help link](https://stackoverflow.com/questions/40799258/where-can-i-get-serviceaccountcredentials-json-for-firebase-admin)
-   ```{
+   ```
+   {
    "type": "",
    "project_id": "",
    "private_key_id": "",
