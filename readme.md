@@ -46,6 +46,6 @@ This is our solution to the Myntra's HackerRamp 2021 Challenge to Enhance the Us
 3. run `$ npm start`
 
 ### Contributors:
-1. Manit Mittal [Github](https://github.com/manitmittal) [LinkedIn](https://www.linkedin.com/in/manit-mittal-870035159/)
-2. Viraj Gupta [Github](https://github.com/Viraj24Gupta) [LinkedIn](https://www.linkedin.com/in/viraj24gupta/)
+1. Viraj Gupta [Github](https://github.com/Viraj24Gupta) [LinkedIn](https://www.linkedin.com/in/viraj24gupta/)
+2. Manit Mittal [Github](https://github.com/manitmittal) [LinkedIn](https://www.linkedin.com/in/manit-mittal-870035159/)
 3. Sahil Tiwari [Github](https://github.com/sahil-9898) [LinkedIn](https://www.linkedin.com/in/sahil-tiwari-307a61166/)
